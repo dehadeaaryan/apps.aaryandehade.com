@@ -7,326 +7,84 @@
     <title>Aaryan's Apps</title>
 
     <meta property="og:title" content="Aaryan's Apps" />
-    <meta property="og:description" content="Live side projects and experiments." />
+    <meta name="description" content="A collection of apps by Aaryan Dehade. Explore student reviews, shared calendars, polls, and Formula 1 sessions." />
+    <meta property="og:description" content="Small ideas, useful apps. Explore projects by Aaryan Dehade." />
     <meta property="og:url" content="https://apps.aaryandehade.com" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="aaryandehade-logo.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <style>
-        /* Base Variables based on Pollish styling */
-        :root {
-            --canvas: #09090b;
-            /* Very dark, almost black background */
-            --ink: #ffffff;
-            --muted: #a1a1aa;
-            --accent: #f97316;
-            /* Orange accent */
-            --line: rgba(255, 255, 255, 0.1);
-            --surface: rgba(255, 255, 255, 0.05);
+        @font-face { font-family: Figtree; src: url('fonts/figtree-latin-wght-normal.woff2') format('woff2'); font-weight: 300 900; font-style: normal; font-display: swap; }
+        :root { color-scheme: dark; --canvas: #000; --ink: #e9e3df; --muted: #aaa29d; --accent: #ff7a30; --line: #ffffff1c; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; min-width: 320px; min-height: 100vh; font-family: Figtree, ui-sans-serif, system-ui, sans-serif; background: var(--canvas); color: var(--ink); isolation: isolate; }
+        a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+        ::selection { background: #ff7a3060; color: #fff; }
+        .skip-link { position: absolute; top: -100px; left: 24px; z-index: 100; padding: 12px 20px; border-radius: 99px; background: var(--accent); color: #17110d; }
+        .skip-link:focus { top: 24px; }
+        .background-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: #000; }
+        .ambient-blob { position: absolute; width: 85vw; height: 85vh; min-width: 500px; filter: blur(65px); opacity: .4; background: radial-gradient(ellipse, #ff7a3070, transparent 65%); animation: drift 30s ease-in-out infinite alternate; }
+        .blob-one { top: -25%; left: -20%; }
+        .blob-two { bottom: -35%; right: -30%; opacity: .22; animation-delay: -15s; }
+        .grain-layer { position: absolute; inset: 0; opacity: .07; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        @keyframes drift { to { transform: translate(18%, 15%) scale(1.15); } }
+        .site-header { position: relative; z-index: 10; width: calc(100% - 48px); max-width: 1176px; margin: 16px auto 0; min-height: 76px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff0d; backdrop-filter: blur(24px) saturate(1.5); box-shadow: inset 0 1px #ffffff20, 0 8px 30px #0003; }
+        .brand-link { display: inline-flex; align-items: center; gap: 10px; font-size: 25px; font-weight: 800; letter-spacing: -.05em; }
+        .brand-link img { width: 38px; height: 38px; border-radius: 10px; border: 1px solid #ffffff29; }
+        .accent-dot { color: var(--accent); }
+        .site-nav { display: flex; align-items: center; gap: 12px; }
+        .button-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 9px 17px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff08; font-size: 13px; font-weight: 600; transition: background .2s; }
+        .button-secondary:hover { background: #ffffff15; }
+        .main-container { width: 100%; max-width: 1176px; margin: auto; padding: 0 0 72px; }
+        .hero { padding: 76px 0 64px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.7px; color: var(--muted); }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #b7c5a4; }
+        h1 { margin: 24px 0 22px; font-size: clamp(48px, 6.4vw, 80px); line-height: 1.02; font-weight: 800; letter-spacing: -.055em; }
+        h1 em { color: var(--accent); font-style: normal; }
+        .hero-description { max-width: 480px; margin: 0; font-size: 16px; line-height: 1.8; color: var(--muted); }
+        .collection-heading { display: flex; align-items: center; justify-content: space-between; padding: 0 0 20px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+        .collection-heading h2 { margin: 0; font-size: 14px; font-weight: 600; }
+        .collection-heading span { font-size: 11px; color: var(--muted); }
+        .app-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+        .app-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: #171514b8; backdrop-filter: blur(24px); box-shadow: inset 0 1px #ffffff12; transition: transform .2s, border-color .2s, background .2s; }
+        .app-card:hover { transform: translateY(-4px); border-color: #ff7a3060; background: #292421c9; }
+        .preview-frame { padding: 24px 24px 0; background: linear-gradient(140deg, #ffffff08, #ffffff00); overflow: hidden; }
+        .preview-image { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; object-position: center; border: 1px solid var(--line); border-radius: 14px 14px 0 0; display: block; background: #090909; box-shadow: 0 8px 24px #0004; transition: transform .3s; }
+        .app-card:hover .preview-image { transform: translateY(-3px); }
+        .preview-text { padding: 24px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-top: 1px solid var(--line); }
+        .app-info { min-width: 0; }
+        .app-category { display: block; color: #c5b5a9; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 9px; }
+        .app-title { margin: 0; font-size: 25px; font-weight: 700; letter-spacing: -.035em; }
+        .app-description { margin: 9px 0 18px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+        .app-url { margin: 0; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+        .arrow-icon { flex-shrink: 0; width: 40px; height: 40px; padding: 11px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: #ffffff05; transition: background .2s, color .2s; }
+        .app-card:hover .arrow-icon { color: #17110d; background: var(--accent); border-color: var(--accent); }
+        .site-footer { max-width: 1176px; margin: auto; padding: 26px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--muted); font-size: 11px; }
+        .site-footer a:hover { color: var(--ink); }
+        @media (max-width: 1240px) { .main-container, .site-footer { width: calc(100% - 64px); } }
+        @media (max-width: 640px) {
+            .site-header { width: calc(100% - 24px); margin-top: 12px; min-height: 64px; padding: 10px 14px; }
+            .brand-link { font-size: 22px; gap: 8px; }
+            .brand-link img { width: 32px; height: 32px; }
+            .site-nav { gap: 6px; }
+            .button-secondary { padding: 9px 11px; font-size: 11px; }
+            .main-container, .site-footer { width: calc(100% - 40px); }
+            .hero { padding: 52px 0 40px; }
+            h1 { font-size: clamp(44px, 10vw, 64px); }
+            .hero-description { font-size: 14px; }
+            .app-list { grid-template-columns: 1fr; gap: 20px; }
+            .preview-frame { padding: 18px 18px 0; }
+            .preview-text { padding: 22px; }
+            .main-container { padding-bottom: 44px; }
         }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: var(--canvas);
-            color: var(--ink);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- Ambient Background Effects --- */
-        .background-layer {
-            position: fixed;
-            inset: 0;
-            z-index: -10;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        /* Blobs */
-        .ambient-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.15;
-            animation: float 20s ease-in-out infinite alternate;
-        }
-
-        .blob-one {
-            top: 10%;
-            left: 10%;
-            width: 50vw;
-            height: 50vw;
-            background-color: #f97316;
-            /* Orange */
-        }
-
-        .blob-two {
-            top: 40%;
-            right: -10%;
-            width: 40vw;
-            height: 40vw;
-            background-color: #3b82f6;
-            /* Blue */
-            animation-delay: -5s;
-        }
-
-        /* SVG Noise/Grain */
-        .grain-layer {
-            position: absolute;
-            inset: 0;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(5%, 10%) scale(1.1);
-            }
-        }
-
-        /* --- Pollish Floating Pill Header --- */
-        .site-header {
-            position: sticky;
-            top: 12px;
-            z-index: 50;
-            margin: 12px auto 0;
-            width: 91.666%;
-            /* w-11/12 */
-            max-width: 80rem;
-            /* max-w-7xl */
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-radius: 9999px;
-            /* rounded-full */
-            border: 1px solid var(--line);
-            background-color: var(--surface);
-            padding: 8px 12px 8px 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(40px) saturate(150%);
-            -webkit-backdrop-filter: blur(40px) saturate(150%);
-        }
-
-        /* Logo & Brand */
-        .brand-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--ink);
-            font-size: 1.125rem;
-            /* text-lg */
-            font-weight: 900;
-            /* font-black */
-            letter-spacing: -0.025em;
-            /* tracking-tight */
-            transition: color 0.2s ease;
-        }
-
-        .brand-link:hover {
-            color: var(--accent);
-        }
-
-        .brand-link img {
-            height: 36px;
-            width: 36px;
-            border-radius: 8px;
-            /* rounded-lg */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
-        }
-
-        .brand-link:hover img {
-            transform: rotate(-3deg) scale(1.05);
-            /* Pollish hover effect */
-        }
-
-        .accent-dot {
-            color: var(--accent);
-        }
-
-        /* Navigation */
-        .site-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .button-secondary {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--line);
-            color: var(--ink);
-            padding: 4px 8px;
-            border-radius: 9999px;
-            /* rounded-full to match Pollish buttons */
-            font-size: 0.75rem;
-            /* text-xs */
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .button-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--accent);
-        }
-
-        /* --- Main Content --- */
-        .main-container {
-            width: 80%;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 50px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        .eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--muted);
-            margin-bottom: 32px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
-        }
-
-        .app-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            justify-items: center;
-            gap: 24px;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .app-list {
-                grid-template-columns: repeat(2, 1fr);
-                /* 2 columns on screens 768px and wider */
-            }
-        }
-
-        /* --- Glassy App Cards --- */
-        .app-card {
-            display: flex;
-            flex-direction: column;
-            border-radius: 1.25rem;
-            width: 100%;
-            max-width: 420px;
-            /* Slightly rounder to match the pill aesthetic */
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--line);
-            text-decoration: none;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
-            backdrop-filter: blur(10px);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-        }
-
-        .app-card:hover,
-        .app-card:active {
-            border-color: rgba(249, 115, 22, 0.4);
-            background-color: rgba(255, 255, 255, 0.06);
-            transform: translateY(-3px) scale(0.99);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        .preview-image {
-            width: 100%;
-            height: 240px;
-            object-fit: contain;
-            background-color: #121214;
-            border-bottom: 1px solid var(--line);
-            display: block;
-        }
-
-        .preview-text {
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .app-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .app-title {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin: 0;
-        }
-
-        .app-url {
-            font-size: 0.6875rem;
-            color: var(--muted);
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            margin: 0;
-        }
-
-        .arrow-icon {
-            color: var(--muted);
-            width: 18px;
-            height: 18px;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        .app-card:hover .arrow-icon,
-        .app-card:active .arrow-icon {
-            color: var(--accent);
-            transform: translateX(4px);
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            width: 91.666%;
-            max-width: 80rem;
-            margin: auto auto 0;
-            padding: 24px 0;
-            border-top: 1px solid var(--line);
-            display: flex;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
     </style>
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to apps</a>
 
     <!-- Ambient background layer -->
     <div class="background-layer" aria-hidden="true">
@@ -335,7 +93,7 @@
         <div class="grain-layer"></div>
     </div>
 
-    <!-- Pollish style floating header -->
+    <!-- Shared app-family header -->
     <header class="site-header">
         <a class="brand-link" href="https://aaryandehade.com" aria-label="Home">
             <img src="apple-touch-icon.png" alt="Logo" />
@@ -353,23 +111,27 @@
         </nav>
     </header>
 
-    <main class="main-container">
-        <div class="eyebrow">
-            <span class="status-dot"></span>
-            Live Deployments
-        </div>
-
+    <main class="main-container" id="main-content">
+        <section class="hero" aria-labelledby="page-title">
+            <div class="eyebrow"><span class="status-dot"></span>Made by Aaryan Dehade</div>
+            <h1 id="page-title">Small ideas.<br><em>Useful apps.</em></h1>
+            <p class="hero-description">A collection of things I’ve built for everyday life, shared plans, and a few personal obsessions. Pick one and take a look around.</p>
+        </section>
+        <section aria-labelledby="collection-title">
+        <div class="collection-heading"><h2 id="collection-title">Explore the collection</h2><span>04 apps · All live</span></div>
         <div class="app-list">
             <!-- DropThatClass -->
             <a href="https://dropthatclass.com" class="app-card">
-                <img src="dropthatclass-preview.png" alt="DropThatClass" class="preview-image">
+                <div class="preview-frame"><img src="dropthatclass-preview.png" alt="DropThatClass" class="preview-image"></div>
                 <div class="preview-text">
                     <div class="app-info">
-                        <p class="app-title">DropThatClass</p>
+                        <span class="app-category">Student life</span>
+                        <h3 class="app-title">DropThatClass</h3>
+                        <p class="app-description">Find your next class with honest reviews from students.</p>
                         <p class="app-url">dropthatclass.com</p>
                     </div>
                     <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
@@ -378,14 +140,16 @@
 
             <!-- Shalendar -->
             <a href="https://shalendar.aaryandehade.com" class="app-card">
-                <img src="shalendar-preview.png" alt="Shalendar" class="preview-image">
+                <div class="preview-frame"><img src="shalendar-preview.png" alt="Shalendar" class="preview-image"></div>
                 <div class="preview-text">
                     <div class="app-info">
-                        <p class="app-title">Shalendar</p>
+                        <span class="app-category">Shared schedules</span>
+                        <h3 class="app-title">Shalendar</h3>
+                        <p class="app-description">Bring everyone’s schedules together, across timezones.</p>
                         <p class="app-url">shalendar.aaryandehade.com</p>
                     </div>
                     <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
@@ -394,14 +158,16 @@
 
             <!-- Pollish -->
             <a href="https://pollish.aaryandehade.com" class="app-card">
-                <img src="pollish-preview.png" alt="Pollish" class="preview-image">
+                <div class="preview-frame"><img src="pollish-preview.png" alt="Pollish" class="preview-image"></div>
                 <div class="preview-text">
                     <div class="app-info">
-                        <p class="app-title">Pollish</p>
+                        <span class="app-category">Polls & decisions</span>
+                        <h3 class="app-title">Pollish</h3>
+                        <p class="app-description">Create a poll and make the next decision together.</p>
                         <p class="app-url">pollish.aaryandehade.com</p>
                     </div>
                     <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
@@ -410,24 +176,28 @@
 
             <!-- Cooldown Room -->
             <a href="https://cooldownroom.aaryandehade.com" class="app-card">
-                <img src="cooldownroom-preview.png" alt="Cooldown Room" class="preview-image">
+                <div class="preview-frame"><img src="cooldownroom-preview.png" alt="Cooldown Room" class="preview-image"></div>
                 <div class="preview-text">
                     <div class="app-info">
-                        <p class="app-title">Cooldown Room</p>
+                        <span class="app-category">Formula 1</span>
+                        <h3 class="app-title">Cooldown Room</h3>
+                        <p class="app-description">Explore race sessions, results, and the story on track.</p>
                         <p class="app-url">cooldownroom.aaryandehade.com</p>
                     </div>
                     <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
                 </div>
             </a>
         </div>
+        </section>
     </main>
 
     <footer class="site-footer">
-        <span>Aaryan Dehade · © 2026</span>
+        <span>© 2026 Aaryan Dehade</span>
+        <a href="https://aaryandehade.com">More about me <span aria-hidden="true">↗</span></a>
     </footer>
 
 </body>
