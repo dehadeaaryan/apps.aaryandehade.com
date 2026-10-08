@@ -8,7 +8,7 @@
 
     <meta property="og:title" content="Aaryan's Apps" />
     <meta name="description" content="A collection of apps by Aaryan Dehade. Explore student reviews, shared calendars, polls, Formula 1 sessions, and MARIE assembly." />
-    <meta property="og:description" content="Small ideas, useful apps. Explore projects by Aaryan Dehade." />
+    <meta property="og:description" content="Student reviews, shared calendars, polls, Formula 1, and MARIE assembly." />
     <meta property="og:url" content="https://apps.aaryandehade.com" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -32,54 +32,32 @@
         @keyframes drift { to { transform: translate(18%, 15%) scale(1.15); } }
         .site-header { position: relative; z-index: 10; width: calc(100% - 48px); max-width: 1176px; margin: 16px auto 0; min-height: 76px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff0d; backdrop-filter: blur(24px) saturate(1.5); box-shadow: inset 0 1px #ffffff20, 0 8px 30px #0003; }
         .brand-link { display: inline-flex; align-items: center; gap: 10px; font-size: 25px; font-weight: 800; letter-spacing: -.05em; }
-        .brand-link img { width: 38px; height: 38px; border-radius: 10px; border: 1px solid #ffffff29; }
+        .brand-link img { width: 38px; height: 38px; border-radius: 10px; border: 1px solid #ffffff29; transition: transform .2s, border-color .2s, box-shadow .2s; }
+        .brand-link:hover img, .brand-link:focus-visible img { transform: rotate(-6deg) scale(1.05); border-color: #ff7a3060; box-shadow: 0 0 18px #ff7a3026; }
         .accent-dot { color: var(--accent); }
         .site-nav { display: flex; align-items: center; gap: 12px; }
         .button-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 9px 17px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff08; font-size: 13px; font-weight: 600; transition: background .2s; }
         .button-secondary:hover { background: #ffffff15; }
-        .main-container { width: 100%; max-width: 1176px; margin: auto; padding: 0 0 72px; }
-        .hero { padding: 76px 0 64px; }
-        .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.7px; color: var(--muted); }
-        .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #b7c5a4; }
-        h1 { margin: 24px 0 22px; font-size: clamp(48px, 6.4vw, 80px); line-height: 1.02; font-weight: 800; letter-spacing: -.055em; }
-        h1 em { color: var(--accent); font-style: normal; }
-        .hero-description { max-width: 480px; margin: 0; font-size: 16px; line-height: 1.8; color: var(--muted); }
-        .collection-heading { display: flex; align-items: center; justify-content: space-between; padding: 0 0 20px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
-        .collection-heading h2 { margin: 0; font-size: 14px; font-weight: 600; }
-        .collection-heading span { font-size: 11px; color: var(--muted); }
+        .main-container { width: 100%; max-width: 1176px; margin: auto; padding: 40px 0 72px; }
         .app-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-        .app-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: #171514b8; backdrop-filter: blur(24px); box-shadow: inset 0 1px #ffffff12; transition: transform .2s, border-color .2s, background .2s; }
+        .app-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 20px; padding: 16px; overflow: hidden; background: #171514b8; backdrop-filter: blur(24px); transition: transform .2s, border-color .2s, background .2s; }
         .app-card:hover { transform: translateY(-4px); border-color: #ff7a3060; background: #292421c9; }
-        .preview-frame { padding: 24px 24px 0; background: linear-gradient(140deg, #ffffff08, #ffffff00); overflow: hidden; }
-        .preview-image { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; object-position: center; border: 1px solid var(--line); border-radius: 14px 14px 0 0; display: block; background: #090909; box-shadow: 0 8px 24px #0004; transition: transform .3s; }
-        .app-card:hover .preview-image { transform: translateY(-3px); }
-        .preview-text { padding: 24px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-top: 1px solid var(--line); }
-        .app-info { min-width: 0; }
-        .app-category { display: block; color: #c5b5a9; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 9px; }
-        .app-title { margin: 0; font-size: 25px; font-weight: 700; letter-spacing: -.035em; }
-        .app-description { margin: 9px 0 18px; font-size: 13px; line-height: 1.7; color: var(--muted); }
-        .app-url { margin: 0; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
-        .arrow-icon { flex-shrink: 0; width: 40px; height: 40px; padding: 11px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: #ffffff05; transition: background .2s, color .2s; }
-        .app-card:hover .arrow-icon { color: #17110d; background: var(--accent); border-color: var(--accent); }
-        .site-footer { max-width: 1176px; margin: auto; padding: 26px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--muted); font-size: 11px; }
-        .site-footer a:hover { color: var(--ink); }
-        @media (max-width: 1240px) { .main-container, .site-footer { width: calc(100% - 64px); } }
+        .preview-image { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; object-position: center; border-radius: 12px; display: block; background: #090909; }
+        .app-title { margin: 18px 4px 0; font-size: 25px; font-weight: 700; letter-spacing: -.035em; }
+        .app-description { margin: 8px 4px 6px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+        @media (max-width: 1240px) { .main-container { width: calc(100% - 64px); } }
         @media (max-width: 640px) {
             .site-header { width: calc(100% - 24px); margin-top: 12px; min-height: 64px; padding: 10px 14px; }
             .brand-link { font-size: 22px; gap: 8px; }
             .brand-link img { width: 32px; height: 32px; }
             .site-nav { gap: 6px; }
             .button-secondary { padding: 9px 11px; font-size: 11px; }
-            .main-container, .site-footer { width: calc(100% - 40px); }
-            .hero { padding: 52px 0 40px; }
-            h1 { font-size: clamp(44px, 10vw, 64px); }
-            .hero-description { font-size: 14px; }
+            .main-container { width: calc(100% - 40px); }
             .app-list { grid-template-columns: 1fr; gap: 20px; }
-            .preview-frame { padding: 18px 18px 0; }
-            .preview-text { padding: 22px; }
-            .main-container { padding-bottom: 44px; }
+            .main-container { padding: 28px 0 44px; }
+            .app-card { padding: 14px; }
         }
-        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .brand-link:hover img, .brand-link:focus-visible img { transform: none; } }
     </style>
 </head>
 
@@ -112,111 +90,43 @@
     </header>
 
     <main class="main-container" id="main-content">
-        <section class="hero" aria-labelledby="page-title">
-            <div class="eyebrow"><span class="status-dot"></span>Made by Aaryan Dehade</div>
-            <h1 id="page-title">Small ideas.<br><em>Useful apps.</em></h1>
-            <p class="hero-description">A collection of things I’ve built for everyday life, shared plans, and a few personal obsessions. Pick one and take a look around.</p>
-        </section>
-        <section aria-labelledby="collection-title">
-        <div class="collection-heading"><h2 id="collection-title">Explore the collection</h2><span>05 apps · All live</span></div>
         <div class="app-list">
             <!-- DropThatClass -->
             <a href="https://dropthatclass.com" class="app-card">
-                <div class="preview-frame"><img src="dropthatclass-preview.png" alt="DropThatClass" class="preview-image"></div>
-                <div class="preview-text">
-                    <div class="app-info">
-                        <span class="app-category">Student life</span>
-                        <h3 class="app-title">DropThatClass</h3>
-                        <p class="app-description">Find your next class with honest reviews from students.</p>
-                        <p class="app-url">dropthatclass.com</p>
-                    </div>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </div>
+                <img src="dropthatclass-preview.png" alt="DropThatClass" class="preview-image">
+                <h2 class="app-title">DropThatClass</h2>
+                <p class="app-description">Find your next class with honest reviews from students.</p>
             </a>
 
             <!-- Shalendar -->
             <a href="https://shalendar.aaryandehade.com" class="app-card">
-                <div class="preview-frame"><img src="shalendar-preview.png" alt="Shalendar" class="preview-image"></div>
-                <div class="preview-text">
-                    <div class="app-info">
-                        <span class="app-category">Shared schedules</span>
-                        <h3 class="app-title">Shalendar</h3>
-                        <p class="app-description">Bring everyone’s schedules together, across timezones.</p>
-                        <p class="app-url">shalendar.aaryandehade.com</p>
-                    </div>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </div>
+                <img src="shalendar-preview.png" alt="Shalendar" class="preview-image">
+                <h2 class="app-title">Shalendar</h2>
+                <p class="app-description">Bring everyone’s schedules together, across timezones.</p>
             </a>
 
             <!-- Pollish -->
             <a href="https://pollish.aaryandehade.com" class="app-card">
-                <div class="preview-frame"><img src="pollish-preview.png" alt="Pollish" class="preview-image"></div>
-                <div class="preview-text">
-                    <div class="app-info">
-                        <span class="app-category">Polls & decisions</span>
-                        <h3 class="app-title">Pollish</h3>
-                        <p class="app-description">Create a poll and make the next decision together.</p>
-                        <p class="app-url">pollish.aaryandehade.com</p>
-                    </div>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </div>
+                <img src="pollish-preview.png" alt="Pollish" class="preview-image">
+                <h2 class="app-title">Pollish</h2>
+                <p class="app-description">Create a poll and make the next decision together.</p>
             </a>
 
             <!-- Cooldown Room -->
             <a href="https://cooldownroom.aaryandehade.com" class="app-card">
-                <div class="preview-frame"><img src="cooldownroom-preview.png" alt="Cooldown Room" class="preview-image"></div>
-                <div class="preview-text">
-                    <div class="app-info">
-                        <span class="app-category">Formula 1</span>
-                        <h3 class="app-title">Cooldown Room</h3>
-                        <p class="app-description">Explore race sessions, results, and the story on track.</p>
-                        <p class="app-url">cooldownroom.aaryandehade.com</p>
-                    </div>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </div>
+                <img src="cooldownroom-preview.png" alt="Cooldown Room" class="preview-image">
+                <h2 class="app-title">Cooldown Room</h2>
+                <p class="app-description">Explore Formula 1 sessions and race results.</p>
             </a>
 
             <!-- MARIE -->
             <a href="https://marie.aaryandehade.com" class="app-card">
-                <div class="preview-frame"><img src="marie-preview.png" alt="MARIE assembly simulator with an accumulator showing 42 decimal" class="preview-image" loading="lazy"></div>
-                <div class="preview-text">
-                    <div class="app-info">
-                        <span class="app-category">Computer architecture</span>
-                        <h3 class="app-title">marie<span class="accent-dot">.</span></h3>
-                        <p class="app-description">Write assembly, step through instructions, and see how a computer thinks.</p>
-                        <p class="app-url">marie.aaryandehade.com</p>
-                    </div>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </div>
+                <img src="marie-preview.png" alt="MARIE assembly simulator with an accumulator showing 42 decimal" class="preview-image" loading="lazy">
+                <h2 class="app-title">marie<span class="accent-dot">.</span></h2>
+                <p class="app-description">Write and step through MARIE assembly.</p>
             </a>
         </div>
-        </section>
     </main>
-
-    <footer class="site-footer">
-        <span>© 2026 Aaryan Dehade</span>
-        <a href="https://aaryandehade.com">More about me <span aria-hidden="true">↗</span></a>
-    </footer>
 
 </body>
 
