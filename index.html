@@ -10,6 +10,11 @@
     <meta name="description" content="A collection of apps by Aaryan Dehade. Explore Discord bots, student reviews, shared calendars, polls, Formula 1 sessions, and MARIE assembly." />
     <meta property="og:description" content="Discord bots, student reviews, shared calendars, polls, Formula 1, and MARIE assembly." />
     <meta property="og:url" content="https://apps.aaryandehade.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://apps.aaryandehade.com/ad-logo.png" />
+    <meta property="og:image:alt" content="Aaryan Dehade orange glass AD monogram" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://apps.aaryandehade.com/ad-logo.png" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -32,8 +37,8 @@
         @keyframes drift { to { transform: translate(18%, 15%) scale(1.15); } }
         .site-header { position: relative; z-index: 10; width: calc(100% - 48px); max-width: 1176px; margin: 16px auto 0; min-height: 76px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff0d; backdrop-filter: blur(24px) saturate(1.5); box-shadow: inset 0 1px #ffffff20, 0 8px 30px #0003; }
         .brand-link { display: inline-flex; align-items: center; gap: 10px; font-size: 25px; font-weight: 800; letter-spacing: -.05em; }
-        .brand-link img { width: 38px; height: 38px; border-radius: 10px; border: 1px solid #ffffff29; transition: transform .2s, border-color .2s, box-shadow .2s; }
-        .brand-link:hover img, .brand-link:focus-visible img { transform: rotate(-6deg) scale(1.05); border-color: #ff7a3060; box-shadow: 0 0 18px #ff7a3026; }
+        .brand-link img { width: 46px; height: 38px; object-fit: contain; transition: transform .2s, filter .2s; }
+        .brand-link:hover img, .brand-link:focus-visible img { transform: rotate(-3deg) scale(1.05); filter: drop-shadow(0 0 10px #ff7a3040); }
         .accent-dot { color: var(--accent); }
         .site-nav { display: flex; align-items: center; gap: 12px; }
         .button-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 9px 17px; border: 1px solid var(--line); border-radius: 99px; background: #ffffff08; font-size: 13px; font-weight: 600; transition: background .2s; }
@@ -49,7 +54,7 @@
         @media (max-width: 640px) {
             .site-header { width: calc(100% - 24px); margin-top: 12px; min-height: 64px; padding: 10px 14px; }
             .brand-link { font-size: 22px; gap: 8px; }
-            .brand-link img { width: 32px; height: 32px; }
+            .brand-link img { width: 40px; height: 32px; }
             .site-nav { gap: 6px; }
             .button-secondary { padding: 9px 11px; font-size: 11px; }
             .main-container { width: calc(100% - 40px); }
@@ -74,7 +79,7 @@
     <!-- Shared app-family header -->
     <header class="site-header">
         <a class="brand-link" href="https://aaryandehade.com" aria-label="Home">
-            <img src="apple-touch-icon.png" alt="Logo" />
+            <img src="ad-logo.png" alt="" width="46" height="38" />
             <span>Apps<span class="accent-dot">.</span></span>
         </a>
         <nav class="site-nav" aria-label="Main navigation">
